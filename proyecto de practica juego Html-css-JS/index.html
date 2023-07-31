@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practica</title>
+
+    <!--estilos del proyecto-->
+
+    <style>
+        *{
+            color: #fff;
+        }
+        body{
+            background-color:  rgb(58, 58, 58);
+            font-family: sans-serif;
+            padding: 30px;
+        }
+
+        button{
+            width: 20%;
+            height: 40px;
+            background-color: rgb(52, 81, 247);
+            border: 0;
+            position: relative;
+            left: 51.3%;
+        }
+
+        h2{
+            color: #fff;
+            text-align: center;
+        }
+
+        ul{
+            color: #fff;
+            margin-top: 10px;
+            list-style: none;
+            width: 40%;
+            position: relative;
+            left: 28%;
+        }
+
+        li{
+            padding: 20px;
+            background-color:  rgb(56, 56, 56);
+            box-shadow: 0px 0px 8px black;
+            transition: all .3s;
+        }
+
+        li:hover{
+            padding: 30px;
+        }
+
+        div{
+            margin-top: 50px;
+            text-align: center;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <h2>Elige una obcion</h2>
+    <ul class="player">
+        <li class="piedra">piedra</li>
+        <li class="papel">papel</li>
+        <li class="tijera">tijera</li>
+    </ul>
+    <button class="boton">Batalla</button>
+
+</body>
+<!--codigo del proyecto-->
+<script>
+    const piedra = document.querySelector(".piedra");
+    const tijera = document.querySelector(".tijera");
+    const papel = document.querySelector(".papel");
+
+    boton = document.querySelector(".boton");
+
+    var i;
+    var r;
+    var e;
+
+    var p1;
+    //funciones las obciones
+    piedra.addEventListener("click", ()=>{
+      piedra.style.backgroundColor = "rgb(52, 81, 247)"
+      i = true;
+      if (r || e) {
+      papel.style.backgroundColor = ""
+      tijera.style.backgroundColor = ""
+      e = false;
+      r = false;
+      p1 = "piedra"
+      }
+    });
+    papel.addEventListener("click", ()=>{
+      papel.style.backgroundColor = "rgb(52, 81, 247)"
+      e = true;
+      if (i || r) {
+      tijera.style.backgroundColor = ""
+      piedra.style.backgroundColor = ""
+      i = false;
+      r = false;
+      p1 = "papel"
+      }
+    });
+    tijera.addEventListener("click", ()=>{
+      tijera.style.backgroundColor = "rgb(52, 81, 247)"
+      r = true;
+      if (i || e) {
+      papel.style.backgroundColor = ""
+      piedra.style.backgroundColor = ""
+      i = false;
+      e = false;
+      p1 = "tijera"
+      }
+    });
+    musicGanaste = new Audio('y2mate.com - Glass Animals  Heat Waves.mp3');
+    musicPerdiste = new Audio('y2mate.com - Grupo Frontera x Bad Bunny  un x100to Video Oficial.mp3');
+    boton.addEventListener("click", ()=>{
+        if(i || r || e){
+    numero = Math.floor(Math.random() *  3);
+   
+    if (numero == 0) {
+        p2 = "piedra";
+        alert("la maquina eliguio: piedra");
+    }else if (numero == 1) {
+        p2 = "papel";
+        alert("la maquina eliguio: papel");
+    }else if (numero == 2) {
+        p2 = "tijera";
+        alert("la maquina eliguio: tijera");
+    }
+
+     if (i && p2 == "piedra"
+        || r && p2 == "tijera"
+        || e && p2 == "papel") {
+        alert("empate");
+        i = false;
+        e = false;
+        r = false;
+     }else if (i && p2 == "tijera" 
+            || r && p2 == "papel"
+            || e && p2 == "piedra") {
+        alert("ganaste");
+        i = false;
+        e = false;
+        r = false;
+        musicGanaste.play();
+        musicPerdiste.pause();
+     }else{
+        let contador = 0;
+        alert("perdiste");
+        i = false;
+        e = false;
+        r = false;
+        musicPerdiste.play();
+        for (contador; contador < 5;  contador++) {
+            console.log(contador);         
+        }
+        musicGanaste.pause();
+     }}
+     else{
+        alert("elige una obcion para poder BATALLAR");
+     }
+     tijera.style.backgroundColor = ""
+     papel.style.backgroundColor = ""
+     piedra.style.backgroundColor = ""
+     });
+</script>
